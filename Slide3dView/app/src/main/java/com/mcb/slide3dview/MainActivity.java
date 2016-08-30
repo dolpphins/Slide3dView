@@ -1,12 +1,12 @@
 package com.mcb.slide3dview;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.animation.AccelerateInterpolator;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
     private View iv_sloop_left;
     private View iv_sloop_right;
 
@@ -21,28 +21,24 @@ public class MainActivity extends Activity {
             @Override
             public void onGlobalLayout() {
 
-                applyRotation(iv_sloop_left, 0, 45);
-                applyRotation(iv_sloop_right, 0, -45);
+                ObjectAnimator animatorLeft = ObjectAnimator.ofFloat(iv_sloop_left, "rotationY", 0, 30f);
+                iv_sloop_left.setPivotX(0);
+                animatorLeft.setDuration(1500);
+                animatorLeft.start();
+
+                ObjectAnimator animatorRight = ObjectAnimator.ofFloat(iv_sloop_right, "rotationY", 0, -30f);
+                iv_sloop_right.setPivotX(580);
+                animatorRight.setDuration(1500);
+                animatorRight.start();
             }
         });
+
+        iv_sloop_left.setOnClickListener(this);
+        iv_sloop_right.setOnClickListener(this);
     }
 
-    private void applyRotation(View v, float start, float end) {
-        float centerX = v.getWidth() / 2.0f;
-        float centerY = v.getHeight() / 2.0f;
-
-        if(v == iv_sloop_left) {
-            centerX = 0;
-        } else if(v == iv_sloop_right) {
-            centerX *= 2;
-        }
-
-        final Rotate3dAnimation rotation = new Rotate3dAnimation(this, start, end, centerX, centerY, 1.0f, true);
-        rotation.setDuration(1500);
-        rotation.setFillAfter(true);
-        rotation.setInterpolator(new AccelerateInterpolator());
-
-        v.startAnimation(rotation);
+    @Override
+    public void onClick(View view) {
+        System.out.println("click " + view.getId());
     }
-
 }

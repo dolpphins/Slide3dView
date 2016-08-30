@@ -10,7 +10,8 @@
             android:id="@+id/iv_sloop_left"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/sloop" />
+            android:src="@drawable/sloop"
+            android:clickable="true"/>
 
     <ImageView
             android:layout_marginTop="20dp"
@@ -18,7 +19,8 @@
             android:id="@+id/iv_sloop_right"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/sloop" />
+            android:src="@drawable/sloop"
+            android:clickable="true"/>
 
     <ImageView
             android:layout_marginTop="20dp"
@@ -26,6 +28,7 @@
             android:id="@+id/iv_sloop_center"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/sloop" />
+            android:src="@drawable/sloop"
+            android:clickable="true"/>
 
 </RelativeLayout>
